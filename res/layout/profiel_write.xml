@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" android:layout_height="fill_parent"
+	android:orientation="vertical" android:background="@drawable/background_1">
+
+	<TableLayout android:id="@+id/TableLayout01"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:layout_weight="1" android:layout_margin="20sp"
+		android:padding="10sp" android:background="@drawable/background_2">
+
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="名前"
+				android:textColor="#0d0d0d" />
+			<EditText android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:id="@+id/editName" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="性別"
+				android:textColor="#0d0d0d" />
+			<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:paddingTop="10sp" android:paddingBottom="10sp" android:text="未設定"
+				android:id="@+id/sex" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="年齢"
+				android:textColor="#0d0d0d" />
+			<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:paddingTop="10sp" android:paddingBottom="10sp" android:text="未設定"
+				android:id="@+id/age" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="血液型"
+				android:textColor="#0d0d0d" />
+			<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:paddingTop="10sp" android:paddingBottom="10sp" android:text="未設定"
+				android:id="@+id/blood" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="身長"
+				android:textColor="#0d0d0d" />
+			<EditText android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:id="@+id/editHeight" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="体重"
+				android:textColor="#0d0d0d" />
+			<EditText android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:id="@+id/editWeight" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="趣味"
+				android:textColor="#0d0d0d" />
+			<EditText android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:id="@+id/editHobby" />
+		</TableRow>
+		<TableRow>
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:layout_marginRight="5sp"
+				android:text="好きな曲" android:textColor="#0d0d0d" />
+			<EditText android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:layout_weight="1"
+				android:id="@+id/editMusic" />
+		</TableRow>
+	</TableLayout>
+
+	<LinearLayout android:orientation="horizontal"
+		android:layout_width="fill_parent" android:layout_height="wrap_content"
+		android:gravity="center">
+
+		<Button android:text="登録" android:id="@+id/input"
+			android:layout_height="wrap_content" android:layout_width="wrap_content" />
+		<Button android:text="キャンセル" android:id="@+id/cancel"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+	</LinearLayout>
+</LinearLayout>

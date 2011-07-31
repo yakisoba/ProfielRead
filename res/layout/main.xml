@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/background_1">
+
+	<Button android:text="プロフィール読み取り" android:id="@+id/read"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+	<Button android:text="プロフィール書き込み" android:id="@+id/write"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+
+</LinearLayout>
