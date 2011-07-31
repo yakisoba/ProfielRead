@@ -3,11 +3,15 @@ package test.pread;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Locale;
 
 import test.pread.R.id;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.FormatException;
@@ -21,13 +25,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Write extends Activity implements OnClickListener {
 	NfcAdapter mAdapter;
 	static String mMessage = null;
+	static Spinner mSex, mBlood;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -40,10 +51,68 @@ public class Write extends Activity implements OnClickListener {
 		findViewById(R.id.cancel).setOnClickListener(this);
 
 		if (mMessage != null) {
-			Log.d("NFC", "nullÇ∂Ç·Ç»Ç¢");
 			onNewIntent(getIntent());
-		} else {
-			Log.d("NFC", "null");
+		}
+
+		setSpinner(R.id.sex, R.array.sex);
+		setSpinner(R.id.blood, R.array.blood);
+
+		final Button ageselect = (Button) findViewById(id.age);
+		ageselect.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				new DatePickerDialog(Write.this,
+						new DatePickerDialog.OnDateSetListener() {
+							@Override
+							public void onDateSet(DatePicker view, int year,
+									int monthOfYear, int dayOfMonth) {
+								int age = calcage(year, monthOfYear, dayOfMonth);
+								ageselect.setText(Integer.toString(age));
+							}
+						}, 2000, 0, 1).show();
+			}
+		});
+	}
+
+	private void setSpinner(int type, int arraytype) {
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+				this, arraytype, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+		OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+			}
+		};
+
+		if (type == R.id.sex) {
+			mSex = (Spinner) findViewById(type);
+			mSex.setAdapter(adapter);
+			mSex.setOnItemSelectedListener(listener);
+		} else if (type == R.id.blood) {
+			mBlood = (Spinner) findViewById(type);
+			mBlood.setAdapter(adapter);
+			mBlood.setOnItemSelectedListener(listener);
+		}
+	}
+
+	private int calcage(int year, int month, int day) {
+		final Calendar calendar = Calendar.getInstance();
+		final int t_year = calendar.get(Calendar.YEAR);
+		final int t_month = calendar.get(Calendar.MONTH);
+		final int t_day = calendar.get(Calendar.DAY_OF_MONTH);
+
+		try {
+			int today = (t_year * 10000) + ((t_month + 1) * 100) + (t_day);
+			int birthday = (year * 10000) + ((month + 1) * 100) + (day);
+			int age = (today - birthday) / 10000;
+			return age;
+		} catch (Exception e) {
+			return -1;
 		}
 	}
 
@@ -61,18 +130,18 @@ public class Write extends Activity implements OnClickListener {
 					.toString();
 			String music = (((EditText) findViewById(id.editMusic)).getText())
 					.toString();
-			String sex = (String) getText(R.id.sex);
-			String age = (String) getText(R.id.age);
-			String blood = (String) getText(R.id.blood);
+			String sex = mSex.getSelectedItem().toString();
+			String age = (((Button) findViewById(id.age)).getText().toString());
+			String blood = mBlood.getSelectedItem().toString();
 
-			Toast.makeText(this, "NFCÉ^ÉOÇÇ©Ç¥ÇµÇƒâ∫Ç≥Ç¢", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, "NFC„Çø„Ç∞„Çí„Åã„Åñ„Åó„Å¶‰∏ã„Åï„ÅÑ", Toast.LENGTH_SHORT).show();
 
 			mMessage = name + "/" + sex + "/" + age + "/" + blood + "/"
 					+ height + "/" + weight + "/" + hobby + "/" + music;
 
 			Log.d("NFC", mMessage);
 
-			// èëÇ´çûÇ›èàóù
+			// Êõ∏„ÅçËæº„ÅøÂá¶ÁêÜ
 			enableForegroundDispatch();
 
 			break;
@@ -82,9 +151,9 @@ public class Write extends Activity implements OnClickListener {
 			(((EditText) findViewById(id.editWeight)).getText()).clear();
 			(((EditText) findViewById(id.editHobby)).getText()).clear();
 			(((EditText) findViewById(id.editMusic)).getText()).clear();
-			((TextView) findViewById(id.age)).setText("ñ¢ê›íË");
-			((TextView) findViewById(id.sex)).setText("ñ¢ê›íË");
-			((TextView) findViewById(id.blood)).setText("ñ¢ê›íË");
+			((Spinner) findViewById(id.sex)).setSelection(0);
+			((Button) findViewById(id.age)).setText("Êú™Ë®≠ÂÆö");
+			((Spinner) findViewById(id.blood)).setSelection(0);
 			break;
 		}
 	}
@@ -102,7 +171,6 @@ public class Write extends Activity implements OnClickListener {
 				new Intent(this, getClass()), 0);
 		mAdapter.enableForegroundDispatch(this, pendingIntent, filters,
 				techLists);
-		Log.d("NFC", "efd");
 	}
 
 	IntentFilter[] makeFilter() {
@@ -128,19 +196,16 @@ public class Write extends Activity implements OnClickListener {
 	@Override
 	public void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);
-		Log.d("NFC", "new intent");
-
 		String action = intent.getAction();
 		if (NfcAdapter.ACTION_TECH_DISCOVERED.equals(action)
 				|| NfcAdapter.ACTION_NDEF_DISCOVERED.equals(action)) {
 			Tag tag = intent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
 			writeNdefMessage(tag);
 			finish();
-		}		
+		}
 	}
 
 	void writeNdefMessage(Tag tag) {
-		Log.d("NFC", mMessage);
 		NdefRecord record = newTextRecord(mMessage, Locale.JAPANESE, true);
 		NdefMessage message = new NdefMessage(new NdefRecord[] { record });
 
@@ -183,18 +248,15 @@ public class Write extends Activity implements OnClickListener {
 	}
 
 	void showSuccessToast() {
-		Toast.makeText(this, "èëÇ´çûÇ›ê¨å˜", Toast.LENGTH_SHORT).show();
-		Log.d("NFC", "success");
+		Toast.makeText(this, "Êõ∏„ÅçËæº„ÅøÊàêÂäü", Toast.LENGTH_SHORT).show();
 	}
 
 	void showFailureToast() {
-		Toast.makeText(this, "èëÇ´çûÇ›é∏îs", Toast.LENGTH_SHORT).show();
-		Log.d("NFC", "faile");
+		Toast.makeText(this, "Êõ∏„ÅçËæº„ÅøÂ§±Êïó", Toast.LENGTH_SHORT).show();
 	}
 
 	void showNotWritableToast() {
-		Toast.makeText(this, "èëÇ´çûÇ›é∏îs", Toast.LENGTH_SHORT).show();
-		Log.d("NFC", "faile");
+		Toast.makeText(this, "Êõ∏„ÅçËæº„ÅøÂ§±Êïó", Toast.LENGTH_SHORT).show();
 	}
 
 	public static NdefRecord newTextRecord(String text, Locale locale,

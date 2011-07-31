@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="hello">Hello World, MainActivity!</string>
-    <string name="app_name">ProfielRead</string>
+	<string name="hello">Hello World, MainActivity!</string>
+	<string name="app_name">ProfielRead</string>
+	<string-array name="sex">
+		<item>未設定</item>
+		<item>男</item>
+		<item>女</item>
+	</string-array>
+	<string-array name="blood">
+		<item>未設定</item>
+		<item>A</item>
+		<item>B</item>
+		<item>AB</item>
+		<item>O</item>
+	</string-array>
 </resources>

@@ -14,34 +14,31 @@
 				android:textColor="#0d0d0d" />
 			<EditText android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
-				android:id="@+id/editName" />
+				android:id="@+id/editName" android:singleLine="true" />
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
 				android:layout_height="wrap_content" android:text="性別"
 				android:textColor="#0d0d0d" />
-			<TextView android:layout_width="fill_parent"
+			<Spinner android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
-				android:paddingTop="10sp" android:paddingBottom="10sp" android:text="未設定"
-				android:id="@+id/sex" />
+				android:text="未設定" android:id="@+id/sex" />
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
 				android:layout_height="wrap_content" android:text="年齢"
 				android:textColor="#0d0d0d" />
-			<TextView android:layout_width="fill_parent"
+			<Button android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
-				android:paddingTop="10sp" android:paddingBottom="10sp" android:text="未設定"
-				android:id="@+id/age" />
+				android:text="未設定" android:id="@+id/age" android:gravity="center|left"/>
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
 				android:layout_height="wrap_content" android:text="血液型"
 				android:textColor="#0d0d0d" />
-			<TextView android:layout_width="fill_parent"
+			<Spinner android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
-				android:paddingTop="10sp" android:paddingBottom="10sp" android:text="未設定"
-				android:id="@+id/blood" />
+				android:text="未設定" android:id="@+id/blood" />
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
@@ -49,7 +46,7 @@
 				android:textColor="#0d0d0d" />
 			<EditText android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
-				android:id="@+id/editHeight" />
+				android:id="@+id/editHeight" android:singleLine="true" />
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
@@ -57,7 +54,7 @@
 				android:textColor="#0d0d0d" />
 			<EditText android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
-				android:id="@+id/editWeight" />
+				android:id="@+id/editWeight" android:singleLine="true" />
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
@@ -65,7 +62,7 @@
 				android:textColor="#0d0d0d" />
 			<EditText android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
-				android:id="@+id/editHobby" />
+				android:id="@+id/editHobby" android:singleLine="true" />
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
@@ -73,7 +70,7 @@
 				android:text="好きな曲" android:textColor="#0d0d0d" />
 			<EditText android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
-				android:id="@+id/editMusic" />
+				android:id="@+id/editMusic" android:singleLine="true" />
 		</TableRow>
 	</TableLayout>
 
@@ -85,6 +82,5 @@
 			android:layout_height="wrap_content" android:layout_width="wrap_content" />
 		<Button android:text="キャンセル" android:id="@+id/cancel"
 			android:layout_width="wrap_content" android:layout_height="wrap_content" />
-
 	</LinearLayout>
 </LinearLayout>
