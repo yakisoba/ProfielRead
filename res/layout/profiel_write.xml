@@ -3,10 +3,17 @@
 	android:layout_width="fill_parent" android:layout_height="fill_parent"
 	android:orientation="vertical" android:background="@drawable/background_1">
 
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:gravity="left"
+		android:text="プロフィール設定" android:textColor="#0d0d0d" android:textSize="20sp"
+		android:paddingTop="10sp" android:paddingLeft="10sp"
+		android:paddingBottom="10sp" />
+
 	<TableLayout android:id="@+id/TableLayout01"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:layout_weight="1" android:layout_margin="20sp"
-		android:padding="10sp" android:background="@drawable/background_2">
+		android:layout_weight="1" android:layout_marginLeft="20sp"
+		android:layout_marginRight="20sp" android:padding="10sp"
+		android:background="@drawable/background_2">
 
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
@@ -26,11 +33,11 @@
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
-				android:layout_height="wrap_content" android:text="年齢"
+				android:layout_height="wrap_content" android:text="生年月日"
 				android:textColor="#0d0d0d" />
 			<Button android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
-				android:text="未設定" android:id="@+id/age" android:gravity="center|left"/>
+				android:text="未設定" android:id="@+id/age" android:gravity="center|left" />
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
@@ -47,6 +54,9 @@
 			<EditText android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
 				android:id="@+id/editHeight" android:singleLine="true" />
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="cm"
+				android:textColor="#0d0d0d" />
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
@@ -55,6 +65,9 @@
 			<EditText android:layout_width="fill_parent"
 				android:layout_height="wrap_content" android:layout_weight="1"
 				android:id="@+id/editWeight" android:singleLine="true" />
+			<TextView android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:text="kg"
+				android:textColor="#0d0d0d" />
 		</TableRow>
 		<TableRow>
 			<TextView android:layout_width="wrap_content"
@@ -76,11 +89,14 @@
 
 	<LinearLayout android:orientation="horizontal"
 		android:layout_width="fill_parent" android:layout_height="wrap_content"
-		android:gravity="center">
+		android:gravity="center" android:layout_marginTop="10sp">
 
 		<Button android:text="登録" android:id="@+id/input"
-			android:layout_height="wrap_content" android:layout_width="wrap_content" />
-		<Button android:text="キャンセル" android:id="@+id/cancel"
-			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+			android:layout_height="wrap_content" android:layout_width="wrap_content"
+			android:layout_weight="1" />
+		<Button android:text="全消去" android:id="@+id/cancel"
+			android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_weight="1" />
+
 	</LinearLayout>
 </LinearLayout>

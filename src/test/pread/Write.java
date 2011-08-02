@@ -8,10 +8,8 @@ import java.util.Locale;
 
 import test.pread.R.id;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.nfc.FormatException;
@@ -32,7 +30,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Write extends Activity implements OnClickListener {
@@ -65,8 +62,8 @@ public class Write extends Activity implements OnClickListener {
 							@Override
 							public void onDateSet(DatePicker view, int year,
 									int monthOfYear, int dayOfMonth) {
-								int age = calcage(year, monthOfYear, dayOfMonth);
-								ageselect.setText(Integer.toString(age));
+								ageselect.setText(year + "/" + (monthOfYear + 1)
+										+ "/" + dayOfMonth);
 							}
 						}, 2000, 0, 1).show();
 			}
@@ -100,16 +97,20 @@ public class Write extends Activity implements OnClickListener {
 		}
 	}
 
-	private int calcage(int year, int month, int day) {
+	private int calcage(String birth) {
 		final Calendar calendar = Calendar.getInstance();
 		final int t_year = calendar.get(Calendar.YEAR);
 		final int t_month = calendar.get(Calendar.MONTH);
 		final int t_day = calendar.get(Calendar.DAY_OF_MONTH);
 
 		try {
+			String[] str = birth.split("/");
 			int today = (t_year * 10000) + ((t_month + 1) * 100) + (t_day);
-			int birthday = (year * 10000) + ((month + 1) * 100) + (day);
+			int birthday = (Integer.parseInt(str[0]) * 10000)
+					+ (Integer.parseInt(str[1]) * 100)
+					+ (Integer.parseInt(str[2]));
 			int age = (today - birthday) / 10000;
+			Log.d("NFC",today + " " + birthday + " "+ age);
 			return age;
 		} catch (Exception e) {
 			return -1;
@@ -131,8 +132,10 @@ public class Write extends Activity implements OnClickListener {
 			String music = (((EditText) findViewById(id.editMusic)).getText())
 					.toString();
 			String sex = mSex.getSelectedItem().toString();
-			String age = (((Button) findViewById(id.age)).getText().toString());
 			String blood = mBlood.getSelectedItem().toString();
+
+			String birth = (((Button) findViewById(id.age)).getText().toString());
+			String age = Integer.toString(calcage(birth));
 
 			Toast.makeText(this, "NFCタグをかざして下さい", Toast.LENGTH_SHORT).show();
 
